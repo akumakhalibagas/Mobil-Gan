@@ -1,0 +1,74 @@
+extends ../layout/base 
+block content 
+	section.content-header 
+		h1 
+			| Edit Customer
+			small menu for editing customer data
+		ol.breadcrumb 
+			li 
+				a(href='#') 
+					i.fa.fa-dashboard
+					| Level 
+			li.active Here 
+	section.content
+		.box
+			.box-header.with-border
+				h3.box-title
+					| Customer
+				.box-tools.pull-right
+					button(type='button', data-widget='collapse', data-toggle='tooltip',title='collapse').btn.btn-box-tool
+						i.fa.fa-minus
+					
+			.box-body
+				form(role='form',method='post' action='/customers/edit/#{(id==undefined) ? data.id : id}')
+					.row
+						
+						.col-xs-6
+							.box-body
+								- if (messages.msg_error) 
+									.alert.alert-danger.alert-dismissable 
+										button.close(type='button', data-dismiss='alert', aria-hidden='true') 
+											| ×
+										h4
+											i.icon.fa.fa-ban
+											| Alert! 
+										| !{messages.msg_error}
+								- if (messages.msg_info) 
+									.alert.alert-success.alert-dismissable 
+										button.close(type='button', data-dismiss='alert', aria-hidden='true') 
+											| ×
+										h4
+											i.icon.fa.fa-ban
+											| Success! 
+										| !{messages.msg_info}
+								.form-group
+									label
+										| User Perental
+									input(type='text',value="#{data.user_perental}",name='user_perental',placeholder='Enter user Perental', autofocus).form-control
+								.form-group
+									label
+										| No Handphone
+									input(type='text',value="#{ (no_hp == undefined) ? data.no_hp : no_hp }",name='no_hp',placeholder='Enter No Handphone').form-control
+								.form-group
+									label
+										| NIK
+									input(type='text',value="#{ (nik == undefined) ? data.nik : nik }",name='nik',placeholder='Enter NIK').form-control
+								.form-group
+									label
+										| Jenis
+									input(type='text',value="#{ (jenis == undefined) ? data.jenis : jenis }",name='jenis',placeholder='Enter Jenis').form-control
+								.form-group
+									label
+										| Status
+									input(type='text',value="#{ (status == undefined) ? data.status : status }",name='status',placeholder='Enter Status').form-control
+								.form-group
+									label
+										| Tanggal
+									input(type='date',value="#{ (tanggal == undefined) ? data.tanggal : tanggal }",name='tanggal',placeholder='Enter Tanggal').form-control
+							.box-footer
+								input(type="hidden",name="_method", value="PUT")
+								button(type='submit').btn.btn-primary
+									i.fa.fa-pencil 
+									|  Edit
+								a(href='/customers').btn.btn-danger.pull-right
+									| Back

@@ -1,0 +1,53 @@
+extends ../layout/base
+block content
+    section.content-header
+        h1
+            | Add Product
+            small it all starts here
+        ol.breadcrumb
+            li
+                a(href='#')
+                    i.fa.fa-dashboard
+                    | Level
+                li.active Here
+    section.content
+        .box
+            .box-header.with-border
+                h3.box-title
+                    | Product
+                .box-tools.pull-right
+                    button(type='button', data-widget='collapse', data-toggle='tooltip',title='collapse').btn.btn-box-tool
+                        i.fa.fa-minus
+
+            .box-body
+                form(role='form',method='post' action='/products/add' enctype='multipart/form-data')
+                    .row
+
+                        .col-xs-6
+                            .box-body
+                                - if (messages.msg_error)
+                                    .alert.alert-danger.alert-dismissable
+                                        button.close(type='button', data-dismiss='alert', aria-hidden='true')
+                                            | ×
+                                        h4
+                                            i.icon.fa.fa-ban
+                                            | Alert!
+                                        | !{messages.msg_error}
+                                .form-group
+                                    label
+                                        | Nama Jenis Mobil
+                                    input(type='text',value='#{nama_jenis_mobil}',name='nama_jenis_mobil',placeholder='Masukkan nama jenis mobil' autofocus).form-control
+                                .form-group
+                                    label
+                                        | Plat Nomor
+                                    input(type='text',name='plat_nomor',placeholder='Masukkan plat nomor').form-control
+                                    .form-group
+                                    label
+                                        | Gambar
+                                    input(type='file', name='gambar', placeholder='Masukkan Gambar').form-control
+                            .box-footer
+                                button(type='submit').btn.btn-primary
+                                    | Submit
+
+                                a(href='/products').btn.btn-danger.pull-right
+                                    | Back
